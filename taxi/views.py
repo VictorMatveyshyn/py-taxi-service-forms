@@ -5,6 +5,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ManufacturerForm
+# from .forms import ManufacturerForm
 from .models import Driver, Car, Manufacturer
 
 
@@ -58,14 +59,14 @@ class DriverDetailView(LoginRequiredMixin, generic.DetailView):
 
 class ManufacturerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Manufacturer
-    fields = "__all__"
+    form_class = ManufacturerForm
     success_url = reverse_lazy("taxi:manufacturer-list")
     template_name = "taxi/manufacturer_form.html"
 
 
 class ManufacturerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Manufacturer
-    fields = "__all__"
+    form_class = ManufacturerForm
     success_url = reverse_lazy("taxi:manufacturer-list")
     template_name = "taxi/manufacturer_form.html"
 
